@@ -49,15 +49,8 @@ Data can be stored as plain text or in JSON format """
         self.time_stamp=(str(self.t[1])+"-"+str(self.t[2])+"-"+\
         str(self.t[3])+"-"+str(self.t[4]))                                                                             
         logging.info("creating sub directory"+str(self.time_stamp))
-        try:
-            os.stat(self.log_dir)
-        except:
-            os.mkdir(self.log_dir) 
         self.log_sub_dir=self.log_dir+"/"+self.time_stamp 
-        try:
-            os.stat(self.log_sub_dir)
-        except:
-            os.mkdir(self.log_sub_dir)
+        os.makedirs(self.log_sub_dir, exist_ok=True)
         return(self.log_sub_dir)
 
     def get_log_name(self,log_dir,count):
